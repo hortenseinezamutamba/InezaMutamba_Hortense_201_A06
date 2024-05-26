@@ -207,7 +207,24 @@ ie: 91 rounds to 90; 173 rounds to 200; 1450 rounds to 1000
 Hint: use `MARGIN = 1:2` to apply the function to each value instead of only a row/col.
 
 ```{r}
+rand_num <- c(sample(10:100, 10), sample(100:999, 10), sample(1000:2000, 10))
 
+mat_rand <- matrix(sample(rand_num, 30), ncol = 5)
+rounded_mat <- apply(mat_rand, MARGIN = 1:2, function(x) {
+  if (x < 100) {#if the number is made with 2 digits
+    rounded_value <- round(x, -1) #round it to 1(tens)
+  } else if (x < 1000) {#if the number is made with 3 digits
+    rounded_value <- round(x, -2)
+  } else if (x < 10000) {#if the number is made with 4 digits
+    rounded_value <- round(x, -3)
+  } else {
+    rounded_value <- x
+  }
+  rounded_value
+})
+
+print(rounded_mat)
+# ask if this is right??
 ```
 
 
@@ -231,6 +248,7 @@ max_temps <- read_tsv("state_max_temps.tsv") |>
 Calculate the average temperature for each month across the whole data frame (using the data for all three states together).
 
 ```{r}
+#????? confused
 
 ```
 
@@ -280,6 +298,14 @@ Example: The number 312 would return 6 (3 + 1 + 2)
 Run your function with 935068.
 
 ```{r}
-
+sum_of_digits <- function(n){
+  if(n<10){
+    return(n)
+  }else{
+    return(n%%10 + sum_of_digits(n%/%10))
+  }
+}
+result <- sum_of_digits(935068)
+print(result)
 ```
 
