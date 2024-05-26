@@ -256,7 +256,7 @@ avg_temps <- colMeans(month_columns, na.rm = TRUE)#colMeans find the mean from t
 #na.rm =TRUE ensures that any missing values are ignored
 
 
-print(avg_temps
+print(avg_temps)
 ```
 
 
